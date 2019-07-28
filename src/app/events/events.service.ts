@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 })
 export class EventsService {
   private events: Event[] = [];
-  //private eventsUpdated: new Subject<Event[]>();
+  // private eventsUpdated: new Subject<Event[]>();
 
   constructor() {}
 
