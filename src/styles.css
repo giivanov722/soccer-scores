@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.body__base{
+  background-image: url('https://previews.123rf.com/images/doimogoju/doimogoju1404/doimogoju140400012/27770527-soccer-football-field-stadium-grass-line-ball-background-texture-light-shadow-on-the-grass.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.inner{
+  padding: 1rem;
+}
+
+.el__border{
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(17,195,0);
+}
+
+.el__background{
+  background-color:rgba(255,255,255,0.95);
+}
+
+.custom__shadow{
+  box-shadow: 1px 1px 15px black;
+}
+
+.left__margin__1{
+  margin-left: 1rem;
+}
+
+.padding__1{
+  padding: 1rem;
+}

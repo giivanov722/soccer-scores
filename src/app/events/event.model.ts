@@ -1,0 +1,33 @@
+export interface Event {
+  idEvent: string;
+  strEvent: string;
+  idLeague: string;
+  strLeague: string;
+  strHomeTeam: string;
+  strAwayTeam: string;
+  intHomeScore: string;
+  intAwayScore: string;
+  intRound: string;
+  intSpectators: string;
+  strHomeGoalDetails: string;
+  strHomeRedCards: string;
+  strHomeYellowCards: string;
+  strHomeLineupGoalkeeper: string;
+  strHomeLineupDefense: string;
+  strHomeLineupMidfield: string;
+  strHomeLineupForward: string;
+  strHomeLineupSubstitutes: string;
+  strHomeFormation: string;
+  strAwayRedCards: string;
+  strAwayYellowCards: string;
+  strAwayGoalDetails: string;
+  strAwayLineupGoalkeeper: string;
+  strAwayLineupDefense: string;
+  strAwayLineupMidfield: string;
+  strAwayLineupForward: string;
+  strAwayLineupSubstitutes: string;
+  strAwayFormation: string;
+  intHomeShots: string;
+  intAwayShots: string;
+  dateEvent: string;
+}
