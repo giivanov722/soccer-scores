@@ -1,8 +1,7 @@
-  <h4>Leagues</h4>
-  <ul class="list-group">
-      <li class="list-group-item text-center font-weight-bold" style="color: darkgreen">Premier league</li>
-      <li class="list-group-item text-center font-weight-bold" style="color: darkgreen">Primera division</li>
-      <li class="list-group-item text-center font-weight-bold" style="color: darkgreen">Bundesliga</li>
-      <li class="list-group-item text-center font-weight-bold" style="color: darkgreen">Seria A</li>
-      <li class="list-group-item text-center font-weight-bold" style="color: darkgreen">League 1</li>
-    </ul>
+    <div class="rounded btn-group-vertical font-weight-bold custom__shadow" style="background: rgba(37, 165, 25, 0.5)">
+      <div *ngFor="let league of leagues" >
+          <div *ngIf="league.strSport === 'Soccer'" style="width: 300px">
+              <button class="btn btn-success btn-size btn__border" [routerLink]="['/league',league.idLeague]" >{{league.strLeague}}</button>
+          </div>
+      </div>
+    </div>

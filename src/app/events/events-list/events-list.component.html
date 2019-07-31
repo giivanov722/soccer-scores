@@ -1,14 +1,17 @@
-        <h2 class="mb-3">Events</h2>
-        <table class="table table-sm">
-          <thead></thead>
-          <tbody class="rounded" style="height: 100%; width: 100%;"
-            *ngFor="let event of events">
-            <tr class="text-center rounded font-weight-bold"
-                style="height: 80%; width: 80%;">
-              <td>{{event.home}}</td>
-              <td>{{event.result}}</td>
-              <td>{{event.away}}</td>
-              <td>73'</td>
-            </tr>
-          </tbody>
-        </table>
+<h2 class="mb-3" style="color: whitesmoke; text-shadow: 1px 1px 8px black;">Events</h2>
+<div class="btn-group mb-1 shadow-sm" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-info">Last 15</button>
+    <button type="button" class="btn btn-info">Today</button>
+    <button type="button" class="btn btn-info">Next 15</button>
+</div>
+<table class="table table-md table-light rounded custom__shadow">
+  <thead></thead>
+  <tbody *ngFor="let event of events">
+    <tr class="text-center rounded ">
+      <td>{{event.home}}</td>
+      <td>{{event.result}}</td>
+      <td>{{event.away}}</td>
+      <td>73'</td>
+    </tr>
+  </tbody>
+</table>

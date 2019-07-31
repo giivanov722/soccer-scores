@@ -1,29 +1,10 @@
-<div class="body__base">
-  <div style="background-color: rgba(255, 255, 255, 0.4)">
-    <app-header class="el__border"></app-header>
-      <div class="inner" style="margin: 0 auto;">
-          <div class="row" style="width: 98%">
-            <app-leagues-list class="col rounded custom__shadow
-              el__border el__background left__margin__1 padding__1"
-              style="width: 25%;">
-            </app-leagues-list>
-            <app-events-list  class="col-xs-12 col-lg-8 rounded
-              element__border custom__shadow el__border el__background
-              left__margin__1 padding__1"
-              style="width: 40%;">
-            </app-events-list>
-            <app-vote-standing class="col rounded custom__shadow
-              el__border el__background left__margin__1 padding__1"
-              style="width: 25%;">
-            </app-vote-standing>
-            <div class="col-12 m-3">
-              <app-comment-create></app-comment-create>
-              <app-comment-list></app-comment-list>
-            </div>
+    <app-header></app-header>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
 
-          </div>
-      </div>
-  </div>
 
-</div>
+
+
+
 

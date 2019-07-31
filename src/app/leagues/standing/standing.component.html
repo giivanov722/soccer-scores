@@ -1,52 +1,27 @@
-<p>standing works!</p>
+<h3>Standing</h3>
 <table class="table table-sm">
-    <thead>
+    <thead class="text-center">
         <th scope="col">#</th>
         <th scope="col">Name</th>
+        <th scope="col">GP</th>
         <th scope="col">W</th>
         <th scope="col">D</th>
         <th scope="col">L</th>
+        <th scope="col">G/D</th>
+        <th scope="col">P</th>
     </thead>
-    <tbody style="height: 100%; width: 100%;">
+    <tbody style="height: 100%; width: 100%;"
+    *ngFor="let team of standing;let position = index">
       <tr  class="text-center rounded"
       style="background: rgb(234, 234, 234); height: 80%; width: 80%;">
-        <th scope="row">1</th>
-        <td>Liverpool</td>
-        <td>27</td>
-        <td>0</td>
-        <td>2</td>
-      </tr>
-      <tr  class="text-center rounded"
-      style="background: rgb(234, 234, 234); height: 80%; width: 80%;">
-        <th scope="row">2</th>
-        <td>Manchester City</td>
-        <td>25</td>
-        <td>2</td>
-        <td>2</td>
-      </tr>
-      <tr  class="text-center rounded"
-      style="background: rgb(234, 234, 234); height: 80%; width: 80%;">
-        <th scope="row">3</th>
-        <td>Tothenam</td>
-        <td>23</td>
-        <td>2</td>
-        <td>3</td>
-      </tr>
-      <tr  class="text-center rounded"
-      style="background: rgb(234, 234, 234); height: 80%; width: 80%;">
-        <th scope="row">4</th>
-        <td>Arsenal</td>
-        <td>22</td>
-        <td>3</td>
-        <td>6</td>
-      </tr>
-      <tr  class="text-center rounded"
-      style="background: rgb(234, 234, 234); height: 80%; width: 80%;">
-        <th scope="row">5</th>
-        <td>Manchester United</td>
-        <td>18</td>
-        <td>4</td>
-        <td>7</td>
+        <th scope="row">{{position+1}}</th>
+        <td>{{team.name}}</td>
+        <td>{{team.played}}</td>
+        <td>{{team.win}}</td>
+        <td>{{team.draw}}</td>
+        <td>{{team.loss}}</td>
+        <td>{{team.goalsfor}}:{{team.goalsagainst}}({{team.goalsdifference}})</td>
+        <td>{{team.total}}</td>
       </tr>
     </tbody>
   </table>

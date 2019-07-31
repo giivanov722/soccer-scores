@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Event } from '../event.model';
 import { EventsService } from '../events.service';
 import { Subscription } from 'rxjs';
 
@@ -7,21 +8,23 @@ import { Subscription } from 'rxjs';
   templateUrl: './events-list.component.html',
   styleUrls: ['./events-list.component.css']
 })
-export class EventsListComponent implements OnInit {
+export class EventsListComponent implements OnInit, OnDestroy {
 
-  //events: Event[] = [];
+  events: Event[] = [];
   private eventsSubscription: Subscription;
-  events = [
-    {home:"Liverpool", away:"Everton", result: "1:0"},
-    {home:"Chelsea", away:"Tothenam", result: "1:1"},
-    {home:"Burnley", away:"Manchester City", result: "1:3"},
-    {home:"Manchester United", away:"Brighton", result: "2:1"},
-    {home:"Newcastle United", away:"Arsenal", result: "2:2"}
-  ];
 
-  constructor() { }
+  constructor(public eventsService: EventsService) { }
 
   ngOnInit() {
+    this.eventsService.getEvents();
+    this.eventsSubscription = this.eventsService.getEventsUpdateListener()
+      .subscribe((events: Event[]) => {
+         this.events = events ;
+      });
+  }
+
+  ngOnDestroy() {
+      this.eventsSubscription.unsubscribe();
   }
 
 

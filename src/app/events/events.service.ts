@@ -8,20 +8,32 @@ import { Subject } from 'rxjs';
 })
 export class EventsService {
   private events: Event[] = [];
-  // private eventsUpdated: new Subject<Event[]>();
+   private eventsUpdated = new Subject<Event[]>();
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  // getEvents() {
-  //   this.http.get<any>('https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=4328')
-  //     .subscribe((responseEvents) => {
-  //       this.events = responseEvents;
-  //       this.eventsUpdated.next([...this.events]);
-  //     });
-  // }
+   getEvents() {
+     this.http.get<any>('http://localhost:3000/events')
+       .subscribe((response) => {
+         this.events = response.events;
+         console.log(response.message);
+         this.eventsUpdated.next([...this.events]);
+       });
+   }
 
-  // getEventsUpdateListener() {
-  //   return this.eventsUpdated.asObservable();
-  // }
+
+  getDailyEvents(date: string) {
+    return  this.http.get<any>(`https://www.thesportsdb.com/api/v1/json/1/eventsday.php?d=${date}&s=Soccer`);
+  }
+
+  getEvent(idEvent: string) {
+    console.log(idEvent);
+    return this.http.get<any>('https://www.thesportsdb.com/api/v1/json/1/lookupevent.php?id=' + idEvent);
+  }
+
+
+   getEventsUpdateListener() {
+     return this.eventsUpdated.asObservable();
+   }
 
 }

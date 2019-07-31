@@ -1,6 +1,7 @@
 .color{
-  background: rgb(37, 165, 25);
+  background: rgb(42, 152, 32);
 }
 .text{
   color: whitesmoke;
+  font-weight: bold;
 }

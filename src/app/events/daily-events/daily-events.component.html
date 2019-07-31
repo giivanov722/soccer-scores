@@ -1,0 +1,40 @@
+<h2 class="mb-3" style="color: whitesmoke; text-shadow: 1px 1px 8px black;">Daily Events</h2>
+<div class="btn-group mb-1 shadow-sm" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-warning" (click) = "getEvents(this.day-1, this.month)">Yesterday</button>
+    <button type="button" class="btn btn-warning" (click) = "getEvents(this.day, this.month)">Today</button>
+    <button type="button" class="btn btn-warning" (click) = "getEvents(this.day+1, this.month)">Tomorrow</button>
+</div>
+<table class="table table-hover table-light text-center rounded custom__shadow">
+  <thead>
+    <tr>
+      <th scope="col">Home</th>
+      <th scope="col">Score</th>
+      <th scope="col">Away</th>
+    </tr>
+  </thead>
+  <tbody class="text-center" *ngFor="let event of dailyEvents">
+    <div *ngIf="event.intHomeScore; then trueBlock else falseBlock"></div>
+      <tr>
+        <ng-template #trueBlock>
+          <td>{{event.strHomeTeam}}</td>
+          <td>{{event.intHomeScore}}:{{event.intAwayScore}}</td>
+          <td>{{event.strAwayTeam}}</td>
+          <td><button type="button" class="btn btn-sm btn-outline-primary"
+            data-toggle="modal"
+            data-target="#myModal"
+            [routerLink]="['/event-show', event.idEvent]"
+           >Details</button></td>
+        </ng-template>
+        <ng-template #falseBlock>
+          <td>{{event.strHomeTeam}}</td>
+          <td>{{event.strTime.substr(0,5)}}h</td>
+          <td>{{event.strAwayTeam}}</td>
+          <td><button class="btn btn-sm btn-outline-primary"
+            data-toggle="modal"
+           >Details</button></td>
+        </ng-template>
+      </tr>
+
+  </tbody>
+</table>
+

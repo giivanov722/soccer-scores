@@ -12,6 +12,10 @@ import { EventShowComponent } from './events/event-show/event-show.component';
 import { AddVoteComponent } from './vote/add-vote/add-vote.component';
 import { VoteStandingComponent } from './vote/vote-standing/vote-standing.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
+import { DailyEventsComponent } from './events/daily-events/daily-events.component';
+import { LeagueShowComponent } from './leagues/league-show/league-show.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +28,15 @@ import { HttpClientModule } from '@angular/common/http';
     CommentListComponent,
     EventShowComponent,
     AddVoteComponent,
-    VoteStandingComponent
+    VoteStandingComponent,
+    HomeComponent,
+    DailyEventsComponent,
+    LeagueShowComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
