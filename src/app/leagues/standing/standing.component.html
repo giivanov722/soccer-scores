@@ -1,27 +1,27 @@
-<h3>Standing</h3>
-<table class="table table-sm">
-    <thead class="text-center">
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">GP</th>
-        <th scope="col">W</th>
-        <th scope="col">D</th>
-        <th scope="col">L</th>
-        <th scope="col">G/D</th>
-        <th scope="col">P</th>
-    </thead>
-    <tbody style="height: 100%; width: 100%;"
-    *ngFor="let team of standing;let position = index">
-      <tr  class="text-center rounded"
-      style="background: rgb(234, 234, 234); height: 80%; width: 80%;">
-        <th scope="row">{{position+1}}</th>
-        <td>{{team.name}}</td>
-        <td>{{team.played}}</td>
-        <td>{{team.win}}</td>
-        <td>{{team.draw}}</td>
-        <td>{{team.loss}}</td>
-        <td>{{team.goalsfor}}:{{team.goalsagainst}}({{team.goalsdifference}})</td>
-        <td>{{team.total}}</td>
-      </tr>
-    </tbody>
-  </table>
+    <h3 style="color: whitesmoke">Standing</h3>
+    <table class="table table-bordered rounded" style="background: whitesmoke">
+        <thead class="text-center">
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">GP</th>
+            <th scope="col">W</th>
+            <th scope="col">D</th>
+            <th scope="col">L</th>
+            <th scope="col">G/D</th>
+            <th scope="col">P</th>
+        </thead>
+        <tbody style="height: 100%; width: 100%;"
+        *ngFor="let team of standing;let position = index">
+          <tr  class="text-center rounded"
+          style="background: rgb(234, 234, 234); height: 80%; width: 80%;">
+            <th scope="row">{{position+1}}</th>
+            <td>{{team.name}}</td>
+            <td>{{team.played}}</td>
+            <td>{{team.win}}</td>
+            <td>{{team.draw}}</td>
+            <td>{{team.loss}}</td>
+            <td>{{team.goalsfor}}:{{team.goalsagainst}}({{team.goalsdifference}})</td>
+            <td>{{team.total}}</td>
+          </tr>
+        </tbody>
+      </table>

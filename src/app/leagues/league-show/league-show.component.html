@@ -1,4 +1,27 @@
 <div>
-  {{league.strBadge}}
-  {{league.strDescriptionEN}}
+  <div *ngIf="league.strBanner">
+      <div class="d-flex" style="background-size: cover;">
+          <img class="rounded" [src]="league.strBanner" alt="Banner" style="width: 100%; height: 200px;">
+      </div>
+  </div>
+  <br>
+  <h2 class="d-flex justify-content-center" style="color: whitesmoke">{{league.strLeague}}</h2>
+  <br>
+  <div class="d-flex justify-content-center">
+    <!-- <a [url]="league.strFacebook"> -->
+        <img class="m-1" src="assets/images/icons/social_net/facebook.png" style="width: 40px; height: 40 px;" alt="">
+    <!-- </a> -->
+    <!-- <a [url]="league.strTwitter"> -->
+        <img class="m-1" src="assets/images/icons/social_net/twitter.png" style="width: 40px; height: 40px;" alt="">
+    <!-- </a> -->
+    <!-- <a url="league.strYoutube"> -->
+        <img class="m-1" src="assets/images/icons/social_net/youtube.png" style="width: 40px; height: 40px;" alt="">
+    <!-- </a> -->
+  </div>
+  <br>
+  <br>
+  <a [href]="league.strWebsite">
+      <img class="d-flex" [src]="league.strBadge" alt="Badge" style="width: 70px; height: 70px; margin: 0 auto">
+  </a>
+  <app-standing></app-standing>
 </div>

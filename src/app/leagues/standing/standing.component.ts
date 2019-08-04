@@ -12,21 +12,20 @@ export class StandingComponent implements OnInit, OnDestroy {
 
   position: Number = 1;
   standing: Standing[] = [];
-  private standingSubscription: Subscription;
+  private standingSub: Subscription;
 
   constructor(private leaguesService: LeaguesService) { }
 
   ngOnInit() {
     this.position = 1;
-    this.leaguesService.getStandingByLeague();
-    this.standingSubscription = this.leaguesService.getStandingUpdateListener()
+    this.standingSub = this.leaguesService.getStandingUpdateListener()
       .subscribe((standing: Standing[]) => {
         this.standing = standing;
       });
   }
 
   ngOnDestroy() {
-    this.standingSubscription.unsubscribe();
+    this.standingSub.unsubscribe();
   }
 
 }

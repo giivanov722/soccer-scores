@@ -1,7 +1,34 @@
+<hr>
+<div class="d-flex flex-column" style="width: 100%; background: whitesmoke">
+  <h4>Comment</h4>
+    <form (submit)="saveComment(commentForm)" #commentForm="ngForm">
+        <div class="form-group p-2">
+            <label class="d-flex flex-row">Name</label>
+            <input
+            class="form-control justify-content-center"
+            type="text"
+            name="author"
+            required
+            placeholder="Author"
+            ngModel>
+          </div>
+          <div class="form-group p-2">
+            <label class="d-flex flex-row">Comment</label>
+            <textarea
+            class="form-control justify-content-center"
+            name="comment"
+            cols="20"
+            rows="5"
+            required
+            placeholder="Content"
+            ngModel>
+          </textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">
+              Add Comment
+            </button>
+      </form>
+      <hr>
+      <app-comment-list></app-comment-list>
+</div>
 
-    <textarea class="form-control" cols="20" rows="10"></textarea>
-  <button class="btn btn-info m-3" (click)="onAddComment()">
-    Add Comment
-  </button>
-
-<p>{{newComment}}</p>

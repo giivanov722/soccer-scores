@@ -1,7 +1,19 @@
-    <div class="rounded btn-group-vertical font-weight-bold custom__shadow" style="background: rgba(37, 165, 25, 0.5)">
+    <!-- <div class="rounded btn-group-vertical font-weight-bold custom__shadow" style="background: rgba(37, 165, 25, 0.5)">
       <div *ngFor="let league of leagues" >
           <div *ngIf="league.strSport === 'Soccer'" style="width: 300px">
-              <button class="btn btn-success btn-size btn__border" [routerLink]="['/league',league.idLeague]" >{{league.strLeague}}</button>
+              <button class="btn btn-success btn-size btn__border"
+              (click)="updateStanding(league.idLeague)"
+               [routerLink]="['/league',league.idLeague]" >{{league.strLeague}}</button>
+          </div>
+      </div>
+    </div> -->
+
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <div *ngFor="let league of leagues">
+          <div *ngIf="league.strSport === 'Soccer'">
+              <a class="dropdown-item"
+              (click)="updateStanding(league.idLeague)"
+              [routerLink]="['/league',league.idLeague]">{{league.strLeague}}</a>
           </div>
       </div>
     </div>

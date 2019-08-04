@@ -2,8 +2,21 @@
 <div style="width: 100%; height: 200px; margin-top: -25px; background-image: url(../assets/images/header/soccer.jpg)">
 </div>
 <nav class="navbar navbar-expand-lg navbar-light color shadow-lg" style="margin: -50px auto -30px auto; background-color:rgb(255, 193, 7);">
-    <div class="container">
-      <a class="navbar-brand text " style="margin: 0 auto; color: darkgreen; font-size: 18pt" href="#">SoccerScores</a>
-    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link font-weight-normal" href="#">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle font-weight-normal" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Leagues
+        </a>
+        <app-leagues-list></app-leagues-list>
+      </li>
+    </ul>
+    <a class="navbar-brand text ml-auto mr-auto" style=" color: darkgreen; font-size: 18pt; width: 40%;" href="#">SoccerScores</a>
+  </div>
 </nav>
-

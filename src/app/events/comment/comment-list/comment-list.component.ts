@@ -1,15 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { EventsService } from '../../events.service';
+import { CommentsService } from '../comments.service';
+import { Subscription } from 'rxjs';
+import { Event } from '../../event.model';
+import { Comment } from '../comment.model';
 
 @Component({
   selector: 'app-comment-list',
   templateUrl: './comment-list.component.html',
   styleUrls: ['./comment-list.component.css']
 })
-export class CommentListComponent implements OnInit {
+export class CommentListComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  eventId = '';
+  eventComments: Comment[] = [];
+  loadCommentsBut = false;
+  private eventSub: Subscription;
+  private commentsSub: Subscription;
+
+  constructor(private eventsService: EventsService, private commentsService: CommentsService) { }
 
   ngOnInit() {
+    this.eventSub = this.eventsService.getEventUpdateListener()
+      .subscribe((event: Event) => {
+        this.eventId = event.idEvent;
+      });
   }
 
+  ngOnDestroy() {
+    this.eventSub.unsubscribe();
+    if (this.commentsSub) {
+      this.commentsSub.unsubscribe();
+    }
+
+  }
+
+  loadComments() {
+    this.loadCommentsBut = !this.loadCommentsBut;
+    console.log('Load comments button ' + this.loadCommentsBut);
+    if (this.loadCommentsBut === true) {
+      this.commentsService.getComments(this.eventId);
+      this.commentsSub = this.commentsService.getCommentsUpdateListener()
+        .subscribe((comments: Comment[]) => {
+          this.eventComments = comments;
+        })
+    }
+  }
 }

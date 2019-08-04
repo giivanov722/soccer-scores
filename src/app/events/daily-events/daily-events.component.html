@@ -1,10 +1,10 @@
-<h2 class="mb-3" style="color: whitesmoke; text-shadow: 1px 1px 8px black;">Daily Events</h2>
+<h2 class="mb-3" style="color: whitesmoke; ">Daily Events</h2>
 <div class="btn-group mb-1 shadow-sm" role="group" aria-label="Basic example">
     <button type="button" class="btn btn-warning" (click) = "getEvents(this.day-1, this.month)">Yesterday</button>
     <button type="button" class="btn btn-warning" (click) = "getEvents(this.day, this.month)">Today</button>
     <button type="button" class="btn btn-warning" (click) = "getEvents(this.day+1, this.month)">Tomorrow</button>
 </div>
-<table class="table table-hover table-light text-center rounded custom__shadow">
+<table class="table table-borderless table-light text-center rounded custom__shadow">
   <thead>
     <tr>
       <th scope="col">Home</th>
@@ -12,29 +12,98 @@
       <th scope="col">Away</th>
     </tr>
   </thead>
-  <tbody class="text-center" *ngFor="let event of dailyEvents">
+  <tbody class="text-center" *ngFor="let event of dailyEvents | paginate: config">
     <div *ngIf="event.intHomeScore; then trueBlock else falseBlock"></div>
       <tr>
         <ng-template #trueBlock>
           <td>{{event.strHomeTeam}}</td>
           <td>{{event.intHomeScore}}:{{event.intAwayScore}}</td>
           <td>{{event.strAwayTeam}}</td>
-          <td><button type="button" class="btn btn-sm btn-outline-primary"
+         <td><button type="button" class="btn btn-sm btn-outline-primary"
             data-toggle="modal"
-            data-target="#myModal"
-            [routerLink]="['/event-show', event.idEvent]"
+            [attr.data-target] = "'#modal' + event.idEvent"
+            (click)="getEvent(event.idEvent)"
            >Details</button></td>
+          <!--Modal for event details-->
+           <div class="modal fade" id="{{'modal' + event.idEvent}}" tabindex="-1"
+           role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header text-center">
+                  <h4 class="modal-title ml-8">{{event.strLeague}}</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <table class="table table-bordered table-light text-right">
+                    <thead>
+                    </thead>
+                      <tbody class="align-items-center">
+                            <tr>
+                                <td class="text-center">{{event.strHomeTeam}}</td>
+                                <td class="text-center font-weight-bold">VS</td>
+                                <td class="text-center">{{event.strAwayTeam}}</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>{{event.intHomeScore}}</td>
+                                <td class="font-weight-bold">GOALS</td>
+                                <td>{{event.intAwayScore}}</td>
+                            </tr>
+                            <tr class="text-center" *ngIf="this.event.intSpectators">
+                                <td></td>
+                                <td class="font-weight-bold">
+                                  <h6>Attendance</h6>
+                                  <p>{{event.intSpectators}}</p>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>{{event.strHomeYellowCards}}</td>
+                                <td><img style="width: 37px; height: 40px;" src="assets/images/icons/yellow_card.png" alt="Missing"></td>
+                                <td>{{event.strAwayYellowCards}}</td>
+                            </tr>
+                            <tr class="text-center">
+                              <td>{{event.strHomeRedCards}}</td>
+                              <td><img style="width: 37px; height: 40px;" src="assets/images/icons/red_card.png" alt="Missing"></td>
+                              <td>{{event.strAwayRedCards}}</td>
+                            </tr>
+                            <tr class="text-center">
+                              <td>{{event.strHomeGoalDetails}}</td>
+                              <td class="font-weight-bold">Scorers</td>
+                              <td>{{event.strAwayGoalDetails}}</td>
+                            </tr>
+                            <tr class="text-center">
+                              <td>{{event.intHomeShots}}</td>
+                              <td class="font-weight-bold">Shots</td>
+                              <td>{{event.intAwayShots}}</td>
+                            </tr>
+                      </tbody>
+                  </table>
+                  <app-comment-create></app-comment-create>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </ng-template>
         <ng-template #falseBlock>
           <td>{{event.strHomeTeam}}</td>
           <td>{{event.strTime.substr(0,5)}}h</td>
           <td>{{event.strAwayTeam}}</td>
-          <td><button class="btn btn-sm btn-outline-primary"
-            data-toggle="modal"
-           >Details</button></td>
+          <td></td>
         </ng-template>
       </tr>
 
   </tbody>
 </table>
-
+<div class="d-flex justify-content-center font-weight-normal">
+  <pagination-controls class="pt-2 pr-5 rounded"
+  style="background-color:rgb(255, 193, 7); color: darkslategray"
+  (pageChange) = "pageChanged($event)"
+  ></pagination-controls>
+</div>

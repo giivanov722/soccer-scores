@@ -11,6 +11,9 @@ import { Subscription } from 'rxjs';
 export class LeaguesListComponent implements OnInit, OnDestroy {
 
   leagues: League[] = [];
+  year: number = new Date().getFullYear();
+  season: string =  (this.year.toString()).substr(2, 3) + ((this.year + 1).toString()).substr(2, 3) ;
+
   private leaguesSubscription: Subscription;
 
   constructor(public leaguesService: LeaguesService) { }
@@ -25,6 +28,10 @@ export class LeaguesListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
       this.leaguesSubscription.unsubscribe();
+  }
+
+  updateStanding(idLeague: string){
+    this.leaguesService.getStandingByLeague(idLeague, this.season);
   }
 
 }

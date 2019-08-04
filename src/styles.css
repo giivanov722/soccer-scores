@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+html {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .body__base{
   background-image: url('https://res.cloudinary.com/fleetnation/image/private/c_fit,w_1120/g_south,l_text:style_gothic2:%C2%A9%20Leung%20Cho%20Pan,o_20,y_10/g_center,l_watermark4,o_25,y_50/v1443087130/cqoffqm0ddfittjhe3fd.jpg');
   height: 1000px;
@@ -10,12 +15,6 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.yellow__card{
-  background-image: url('/src/assets/images/icons/yellow_card.png');
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .inner{

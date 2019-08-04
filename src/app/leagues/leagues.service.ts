@@ -25,8 +25,8 @@ export class LeaguesService {
       });
   }
 
-  getStandingByLeague() {
-    this.http.get<any>('https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=4328&s=1819')
+  getStandingByLeague(idLeague: string, season: string) {
+    this.http.get<any>(`https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=${idLeague}&s=` + season)
       .subscribe((response) => {
         console.log(response);
         this.standing = response.table;
@@ -44,6 +44,7 @@ export class LeaguesService {
   }
 
   getStandingUpdateListener() {
+    console.log(this.standingUpdated);
     return this.standingUpdated.asObservable();
   }
 

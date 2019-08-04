@@ -1,11 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-//const mongoose = require('mongoose');
+const mongoose = require('mongoose');
+
+const Comment = require('./models/comment');
+
 const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+mongoose.connect("mongodb://localhost:27017/soccer-app", {useNewUrlParser: true})
+  .then(() => {
+    console.log('DB connection successful');
+  })
+  .catch(() => {
+    console.log('DB connection failed');
+  })
 
+app.use(bodyParser.json());
 app.use((req,res,next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers",
@@ -17,21 +26,34 @@ app.use((req,res,next) => {
   next();
 });
 
-
-app.use('/events',(req,res,next) => {
-   const events = [
-     {id: "1", home:"Liverpool", away:"Everton", result: "1:0"},
-     {id: "2", home:"Chelsea", away:"Tothenam", result: "1:1"},
-     {id: "3", home:"Burnley", away:"Manchester City", result: "1:3"},
-     {id: "4", home:"Manchester United", away:"Brighton", result: "2:1"},
-     {id: "5", home:"Newcastle United", away:"Arsenal", result: "2:2"},
-     {id: "6", home:"Levski Kiunec", away:"CSKA-Mangaliq", result: "6:0"}
-   ];
-  //const events = request.get('https://www.thesportsdb.com/api/v1/json/1/eventsround.php?id=4328&r=38&s=1415');
-  res.status(200).json({
-    message: 'Events fetched',
-    events: events
+app.post('/event/comment', (req, res, next) => {
+  const comment = new Comment({
+    author: req.body.author,
+    strComment: req.body.strComment,
+    strIdEvent: req.body.strIdEvent
+  });
+  comment.save();
+  res.status(201).json({
+    message: "Comment saved!"
   });
 });
+
+app.get('/event/:idEvent/comments', (req, res, next) => {
+  console.log('Im in the get comments method' + req.params.idEvent);
+  const eventId = req.params.idEvent
+  Comment.find({strIdEvent: eventId})
+    .then( comments => {
+      console.log(comments);
+      if(comments){
+        res.status(200).json(comments);
+      }else{
+        res.status(404).json({
+          message: 'Comments not found'
+        });
+      }
+    });
+
+});
+
 
 module.exports = app;
