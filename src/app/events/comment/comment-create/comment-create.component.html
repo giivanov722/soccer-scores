@@ -2,16 +2,6 @@
 <div class="d-flex flex-column" style="width: 100%; background: whitesmoke">
   <h4>Comment</h4>
     <form (submit)="saveComment(commentForm)" #commentForm="ngForm">
-        <div class="form-group p-2">
-            <label class="d-flex flex-row">Name</label>
-            <input
-            class="form-control justify-content-center"
-            type="text"
-            name="author"
-            required
-            placeholder="Author"
-            ngModel>
-          </div>
           <div class="form-group p-2">
             <label class="d-flex flex-row">Comment</label>
             <textarea

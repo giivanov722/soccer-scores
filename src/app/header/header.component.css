@@ -1,7 +1,9 @@
-.color{
-  background: rgb(42, 152, 32);
-}
 .text{
   color: whitesmoke;
   font-weight: bold;
+}
+.nav__brand{
+  color: darkgreen;
+  font-size: 18pt;
+  width: 15%;
 }

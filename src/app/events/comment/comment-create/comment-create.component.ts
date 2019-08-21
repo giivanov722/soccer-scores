@@ -5,6 +5,7 @@ import { EventsService } from '../../events.service';
 import { Subscription } from 'rxjs';
 import { CommentsService } from '../comments.service';
 import { Comment } from '../comment.model';
+import { AuthService } from 'src/app/auth/auth.service';
 
 
 
@@ -18,22 +19,19 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
 
   eventId;
   eventComments: Comment[] = [];
+  userId: string;
+  username: string;
   private eventSub: Subscription;
   private commentSub: Subscription;
 
-  constructor(public eventsService: EventsService, public commentsService: CommentsService) { }
+  constructor(public eventsService: EventsService, public commentsService: CommentsService, public authService: AuthService) { }
 
   ngOnInit() {
+    this.username = this.authService.getUsername();
     this.eventSub = this.eventsService.getEventUpdateListener()
       .subscribe((event: Event) => {
         this.eventId = event.idEvent;
       });
-
-    // this.commentSub = this.commentsService.getCommentsUpdateListener()
-    //   .subscribe((comments: Comment[]) => {
-    //     this.eventComments = comments;
-    //   });
-
   }
 
   ngOnDestroy() {
@@ -48,7 +46,7 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
     if (form.invalid) {
       return;
     }
-    this.commentsService.addComment(form.value.author, form.value.comment, this.eventId);
+    this.commentsService.addComment(this.username, form.value.comment, this.eventId, this.userId);
     // added now
     console.log('/////////////aaaaaaaaaaaaaaaaaaaaaaaaaa');
     this.commentsService.getComments(this.eventId);

@@ -25,12 +25,10 @@ export class EventsService {
 
 
   getDailyEvents(date: string) {
-    console.log('The date in events service: ' + date);
     return  this.http.get<any>(`https://www.thesportsdb.com/api/v1/json/1/eventsday.php?d=${date}&s=Soccer`);
   }
 
   getEvent(idEvent: string) {
-    console.log("id in getEvent eventService: " + idEvent);
     return this.http.get<any>('https://www.thesportsdb.com/api/v1/json/1/lookupevent.php?id=' + idEvent)
       .subscribe( response => {
         this.event = response.events[0];

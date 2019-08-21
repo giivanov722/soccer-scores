@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EventShowComponent } from './events/event-show/event-show.component';
 import { LeagueShowComponent } from './leagues/league-show/league-show.component';
 import { DailyEventsComponent } from './events/daily-events/daily-events.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 const routes: Routes = [
   { path: '', component: DailyEventsComponent},
-//  { path: 'event-show/:idEvent', component: EventShowComponent},
-  { path: 'league/:idLeague', component: LeagueShowComponent}
-  // {path: 'create', component: PostCreateComponent}
+  { path: 'league/:idLeague', component: LeagueShowComponent},
+  { path: 'user/login', component: LoginComponent },
+  { path: 'user/signup', component: SignupComponent }
 ];
 
 @NgModule({

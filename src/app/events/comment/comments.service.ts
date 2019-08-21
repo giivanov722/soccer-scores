@@ -14,12 +14,13 @@ export class CommentsService {
 
   constructor(private http: HttpClient) { }
 
-addComment(author: string, strComment: string, strIdEvent: string) {
+addComment(username: string, strComment: string, strIdEvent: string, creator: string) {
   const comment: Comment = {
     _id: null,
-    author,
+    author: username,
     strComment,
-    strIdEvent
+    strIdEvent,
+    creator
   };
   this.http.post<any>('http://localhost:3000/event/comment', comment)
     .subscribe(response => {
@@ -28,14 +29,22 @@ addComment(author: string, strComment: string, strIdEvent: string) {
 }
 
 getComments(idEvent: string) {
-  console.log('id: ' + idEvent);
-  console.log('getComments activated in comments service');
   this.http.get<any>(`http://localhost:3000/event/${idEvent}/comments`)
   .subscribe(response => {
+    console.log('***************' + response);
     this.comments = response;
-    console.log('The obtained comments' + this.comments);
     this.commentsUpdateListener.next([...this.comments]);
   });
+}
+
+deleteComment(idComment: string) {
+  console.log('I am in delete comments service method');
+  this.http.delete('http://localhost:3000/event/comments/' + idComment)
+    .subscribe( () => {
+      const updatedComments = this.comments.filter(comment => comment._id !== idComment);
+      this.comments = updatedComments;
+      this.commentsUpdateListener.next([...this.comments]);
+    });
 }
 
 getCommentsUpdateListener() {

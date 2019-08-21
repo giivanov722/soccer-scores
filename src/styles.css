@@ -10,28 +10,15 @@ html {
   background-image: url('https://res.cloudinary.com/fleetnation/image/private/c_fit,w_1120/g_south,l_text:style_gothic2:%C2%A9%20Leung%20Cho%20Pan,o_20,y_10/g_center,l_watermark4,o_25,y_50/v1443087130/cqoffqm0ddfittjhe3fd.jpg');
   height: 1000px;
 
-  /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-.inner{
-  padding: 1rem;
-}
-
-.el__border{
-  border-style: solid;
-  border-width: 2px;
-  border-color: rgb(17,195,0);
-}
-
 .el__background{
   background-color:rgba(255,255,255,0.7);
   color: darkslategray;
 }
-
 .custom__shadow{
   box-shadow: 3px 3px 14px darkslategray;
 }
@@ -39,11 +26,32 @@ html {
   margin-right:  1rem;
   margin-left: 1rem;
 }
-
 .padding__1{
   padding: 1rem;
 }
-
 .table__text__center{
   text-align: center;
+}
+.yellow__background{
+  background-color:rgb(255, 193, 7);
+}
+
+.yellow__border{
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(255, 193, 7);
+}
+.transition{
+  width: 100%;
+  height: 100%;
+  transition: 0.3s;
+}
+.transition:hover{
+  width: 105%;
+  height: 105%;
+  box-shadow: 1px 1px 4px gray;
+}
+
+.form__transparent{
+  background: rgba(245, 245, 245, 0.8);
 }

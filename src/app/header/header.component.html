@@ -1,22 +1,34 @@
 
 <div style="width: 100%; height: 200px; margin-top: -25px; background-image: url(../assets/images/header/soccer.jpg)">
 </div>
-<nav class="navbar navbar-expand-lg navbar-light color shadow-lg" style="margin: -50px auto -30px auto; background-color:rgb(255, 193, 7);">
+<nav class="navbar navbar-expand-lg navbar-light shadow-lg yellow__background">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link font-weight-normal" href="#">Home</a>
+      <li class="nav-item mr-1">
+        <button class="btn btn-md yellow__background font-weight-light transition" routerLink="/">Home</button>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle font-weight-normal" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle font-weight-normal" href="#" id="navbarDropdown"
+          role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Leagues
         </a>
         <app-leagues-list></app-leagues-list>
       </li>
     </ul>
-    <a class="navbar-brand text ml-auto mr-auto" style=" color: darkgreen; font-size: 18pt; width: 40%;" href="#">SoccerScores</a>
+    <a class="navbar-brand text ml-auto mr-auto nav__brand" href="#">SoccerScores</a>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item mr-1" *ngIf="!userAuthenticated">
+        <button class="btn btn-md yellow__background font-weight-light transition" routerLink="user/login">Login</button>
+      </li>
+      <li class="nav-item ml-1" *ngIf="!userAuthenticated">
+        <button class="btn btn-md yellow__background font-weight-light transition" routerLink="user/signup">Sign up</button>
+      </li>
+      <li class="nav-item ml-1" *ngIf="userAuthenticated">
+        <button class="btn btn-md yellow__background font-weight-light transition" (click) = "onLogout()">Logout</button>
+      </li>
+    </ul>
   </div>
 </nav>

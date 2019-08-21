@@ -3,4 +3,5 @@ export interface Comment {
   author: string;
   strComment: string;
   strIdEvent: string;
+  creator: string;
 }

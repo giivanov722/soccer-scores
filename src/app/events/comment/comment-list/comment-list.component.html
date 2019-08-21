@@ -1,10 +1,15 @@
 <a (click)="loadComments()">Show comments</a>
 <div class="p-2" *ngIf="loadCommentsBut === true ">
   <div *ngFor="let comment of eventComments">
-    <div class="card m-2" style="width: 100%" style="background: rgba(173, 216, 230, 0.4)">
-      <div class="card-body">
-        <h6 class="mr-auto card-title">{{comment.author}}</h6>
-        <p class="mr-auto card-text">{{comment.strComment}}</p>
+    <div class="card m-2 background__lightblue">
+      <div class="card-body text-left">
+        <h6 class="mr-auto card-title ">{{comment.author}}</h6>
+        <p class="mr-auto card-text font-weight-lighter">{{comment.strComment}}</p>
+      </div>
+      <hr>
+      <div class="pb-2" *ngIf="isUserAuth && userId === comment.creator">
+        <button class="btn btn-sm btn-primary" >Edit</button>
+        <button class="btn btn-sm btn-danger" (click)="deleteComment(comment._id)" >Delete</button>
       </div>
     </div>
   </div>

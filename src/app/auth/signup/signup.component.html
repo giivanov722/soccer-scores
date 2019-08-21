@@ -1,0 +1,18 @@
+<div class="rounded p-3 ml-auto mr-auto yellow__border form__transparent">
+  <h2>Sign up</h2>
+  <form (submit)="onSignUp(formSignUp)" #formSignUp="ngForm">
+    <div class="form-group">
+      <label>Email</label>
+      <input  type="email" name="email" ngModel class="form-control" placeholder="Enter email" required email>
+    </div>
+    <div class="form-group">
+      <label>Username</label>
+      <input  type="text" name="username" ngModel class="form-control" placeholder="Enter username" required>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" name="password" ngModel class="form-control" placeholder="Password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign up</button>
+  </form>
+</div>

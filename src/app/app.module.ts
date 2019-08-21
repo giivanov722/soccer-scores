@@ -2,36 +2,33 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { EventsListComponent } from './events/events-list/events-list.component';
 import { LeaguesListComponent } from './leagues/leagues-list/leagues-list.component';
 import { StandingComponent } from './leagues/standing/standing.component';
 import { HeaderComponent } from './header/header.component';
 import { CommentCreateComponent } from './events/comment/comment-create/comment-create.component';
 import { CommentListComponent } from './events/comment/comment-list/comment-list.component';
-import { EventShowComponent } from './events/event-show/event-show.component';
-import { AddVoteComponent } from './vote/add-vote/add-vote.component';
-import { VoteStandingComponent } from './vote/vote-standing/vote-standing.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { DailyEventsComponent } from './events/daily-events/daily-events.component';
 import { LeagueShowComponent } from './leagues/league-show/league-show.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthenticationInterceptor } from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EventsListComponent,
     LeaguesListComponent,
     StandingComponent,
     HeaderComponent,
     CommentCreateComponent,
     CommentListComponent,
-    EventShowComponent,
-    AddVoteComponent,
-    VoteStandingComponent,
     DailyEventsComponent,
-    LeagueShowComponent
+    LeagueShowComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +38,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
