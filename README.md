@@ -1,6 +1,6 @@
 # Welcome to the soccer-scores app
 
-Soccer related web application using the MEAN Stack and JWT authentication. The application gets soccer matches by using JSON data from the The Sports DB Free API (https://www.thesportsdb.com/), and gives the oportunity to the users to see info about upcomming and already played matches, aswell as information and standings for the included leagues. Logged users also have the option to leave a comment under the details component on a passed event. The comment functionality is made by using the MEAN Stack.
+Soccer related web application using the MEAN Stack and JWT authentication. An Angular frontend service gets soccer matches and league details by using JSON data from the The Sports DB Free API (https://www.thesportsdb.com/), and gives the oportunity to the users to see info about upcomming and already played matches, aswell as information and standings for the included leagues. Logged users also have the option to leave a comment in the comment section of a finished event. The comment functionality is made by making an Express app, running on Node.js and also using MongoDB as a database and Mongoose for modeling schemas.
 
 ## Home page
 
